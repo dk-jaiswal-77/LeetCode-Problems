@@ -14,6 +14,8 @@ class Solution {
                 start++;
             } else {
                 end--;
+                // remove this line later
+                System.out.println("just for testing!");
             }
         }
         return res;
