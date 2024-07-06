@@ -9,8 +9,9 @@ class Solution {
                 count++;
             }
             int curr = i - 1;
+            int req = sum - k;
             while (curr >= 0) {
-                if (sum - nums[curr] == k) {
+                if (nums[curr] == req) {
                     count++;
                 }
                 curr--;
