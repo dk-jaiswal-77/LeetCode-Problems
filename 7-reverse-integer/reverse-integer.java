@@ -10,7 +10,7 @@ class Solution {
             digit = n % 10;
             temp = rev * 10 + digit;
             if (rev == ((temp - digit) / 10)) {
-                rev = rev * 10 + digit;
+                rev = temp;
             } else {
                 return 0;
             }
