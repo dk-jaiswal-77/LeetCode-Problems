@@ -43,18 +43,18 @@ class Solution {
         // form return result
         List<List<Integer>> res = new ArrayList<>();
         
-        Set<Integer> verticals = mappings.keySet();
-        Set<Integer> levels;
+        // Set<Integer> verticals = mappings.keySet();
+        // Set<Integer> levels;
         
         Map<Integer, PriorityQueue<Integer>> v;
-        for (Integer vertical: verticals) {
-            v = mappings.get(vertical);
+        for (TreeMap<Integer, PriorityQueue<Integer>> vertical: mappings.values()) {
+            // v = mappings.get(vertical);
             ArrayList<Integer> list = new ArrayList<>();
-            levels = v.keySet();
-            for (Integer level: levels) {
-                PriorityQueue<Integer> pq = v.get(level);
-                while(!pq.isEmpty()) {
-                    list.add(pq.poll());
+            // levels = v.keySet();
+            for (PriorityQueue<Integer> level: vertical.values()) {
+                // PriorityQueue<Integer> pq = v.get(level);
+                while(!level.isEmpty()) {
+                    list.add(level.poll());
                 }
             }
             res.add(list);
