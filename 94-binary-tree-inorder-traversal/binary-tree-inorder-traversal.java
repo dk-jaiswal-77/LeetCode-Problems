@@ -37,35 +37,32 @@ class Solution {
         curr.right = null;
     }
 
-    private void inTraversal(TreeNode root, List<Integer> res) {
-        if (root == null) return;
-        // case1: left subtree is null
-        if (root.left == null) {
-            res.add(root.val);
-            inTraversal(root.right, res);
-            return;
-        }
-        // case2: left subtree exists
-        // check if left part traversed or not
-        boolean threadExists = doesThreadExists(root.left, root);
-        if (threadExists) {
-            // thread exists --> traversed. so cut the thread and traverse right
-            cutThread(root.left, root);
-            res.add(root.val);
-            inTraversal(root.right, res);
-            return;
-        }
-
-        // thread does not exist --> yet to be traversed
-        // create thread & traverse left
-        createThread(root.left, root);
-        // findLeftSubTreeLastNode(root.left).right = root;
-        inTraversal(root.left, res);
-    }
-    
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<>();
-        inTraversal(root, res);
+        TreeNode curr = root;
+        while (curr != null) {
+            // case1: left subtree is null
+            if (curr.left == null) {
+                res.add(curr.val);
+                curr = curr.right;
+                continue;
+            }
+            // case2: left subtree exists
+            // check if left part traversed or not
+            boolean threadExists = doesThreadExists(curr.left, curr);
+            if (threadExists) {
+                // thread exists --> traversed. so cut the thread and traverse right
+                cutThread(curr.left, curr);
+                res.add(curr.val);
+                curr = curr.right;
+                continue;
+            }
+
+            // thread does not exist --> yet to be traversed
+            // create thread & traverse left
+            createThread(curr.left, curr);
+            curr = curr.left;
+        }
         return res;
     }
 }
