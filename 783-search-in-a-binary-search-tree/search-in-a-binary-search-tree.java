@@ -15,9 +15,19 @@
  */
 class Solution {
     public TreeNode searchBST(TreeNode root, int val) {
-        if (root == null) return root;
-        if (root.val == val) return root;
-        if (root.val < val) return searchBST(root.right, val);
-        return searchBST(root.left, val);
+        // recursive approach
+        // if (root == null) return root;
+        // if (root.val == val) return root;
+        // if (root.val < val) return searchBST(root.right, val);
+        // return searchBST(root.left, val);
+
+        // iterative approach
+        TreeNode curr = root;
+        while (curr != null) {
+            if (curr.val == val) return curr;
+            if (curr.val < val) curr = curr.right;
+            else curr = curr.left;
+        }
+        return curr;
     }
 }
