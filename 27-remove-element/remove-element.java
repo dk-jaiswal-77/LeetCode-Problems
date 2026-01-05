@@ -5,9 +5,11 @@ class Solution {
         int temp;
         for (; right < nums.length; right++) {
             if (nums[right] != val) {
-                temp = nums[left];
-                nums[left] = nums[right];
-                nums[right] = temp;
+                if (left != right) {
+                    temp = nums[left];
+                    nums[left] = nums[right];
+                    nums[right] = temp;
+                }
                 left++;
             }
         }
