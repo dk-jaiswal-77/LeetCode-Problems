@@ -5,7 +5,7 @@ class Solution {
         for (; right < n; right++) {
             if (nums[left] != nums[right]) {
                 left++;
-                nums[left] = nums[right];
+                if (left != right) nums[left] = nums[right];
             }
         }
         return left + 1;
