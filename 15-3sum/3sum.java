@@ -1,32 +1,34 @@
-import java.util.Arrays;
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
+        int n = nums.length;
         Arrays.sort(nums);
+        int target;
+        int left, right, sum;
         List<List<Integer>> res = new ArrayList<>();
-        for (int first = 0; first < nums.length - 2; first++) {
-            if ((first > 0) && nums[first] == nums[first - 1]) continue; // to skip duplicate iterations
-            int left = first + 1;
-            int right = nums.length - 1;
-            int req = 0 - (nums[first]);
+        for (int i = 0; i <= n - 3; i++) {
+            if (i > 0 && nums[i] == nums[i-1]) continue;
+            target = 0 - nums[i];
+            left = i + 1;
+            right = n - 1;
             while (left < right) {
-                if ((left > first + 1) && nums[left] == nums[left - 1]) {
+                if (left > i + 1 && nums[left] == nums[left - 1]) {
                     left++;
                     continue;
-                };
-                if ((right < nums.length - 1) && nums[right] == nums[right + 1]) {
+                }
+                if (right < n- 1 && nums[right] == nums[right + 1]) {
                     right--;
                     continue;
-                };
-                int currSum = nums[left] + nums[right];
-                if (currSum == req) {
-                    List<Integer> temp = new ArrayList<>();
-                    temp.add(nums[first]);
-                    temp.add(nums[left]);
-                    temp.add(nums[right]);
-                    res.add(temp);
+                }
+                sum = nums[left] + nums[right];
+                if (sum == target) {
+                    List<Integer> list = new ArrayList<>();
+                    list.add(nums[i]);
+                    list.add(nums[left]);
+                    list.add(nums[right]);
+                    res.add(list);
                     left++;
                     right--;
-                } else if (currSum < req) {
+                } else if(sum < target) {
                     left++;
                 } else {
                     right--;
