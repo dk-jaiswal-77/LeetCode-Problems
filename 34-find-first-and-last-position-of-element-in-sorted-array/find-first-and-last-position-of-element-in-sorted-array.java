@@ -17,7 +17,7 @@ class Solution {
                 right = mid - 1;
             }
             else if (target < nums[mid]) right = mid - 1;
-            else left++;
+            else left = mid + 1;
         }
         return idx;
     }
