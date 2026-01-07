@@ -2,7 +2,7 @@ class Solution {
     public int[] searchRange(int[] nums, int target) {
         int first = firstPos(nums, target);
         if (first < 0) return new int[]{-1, -1};
-        int last = lastPos(nums, target);
+        int last = lastPos(nums, target, first);
         return new int[]{first, last};
     }
     private int firstPos(int[] nums, int target) {
@@ -22,8 +22,8 @@ class Solution {
         return idx;
     }
 
-    private int lastPos(int[] nums, int target) {
-        int left = 0;
+    private int lastPos(int[] nums, int target, int start) {
+        int left = start;
         int right = nums.length - 1;
         int mid;
         int idx = -1;
